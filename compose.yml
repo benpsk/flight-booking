@@ -8,8 +8,8 @@ services:
     expose:
       - 9000
     ports:
-      #    - "5173:5173"
-    - "13714:13714"
+      - "5173:5173"
+      #- "13714:13714"
     restart: unless-stopped
     environment:
       ROLE: app
