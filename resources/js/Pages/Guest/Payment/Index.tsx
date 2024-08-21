@@ -3,10 +3,10 @@ import Layout from '@/Pages/Guest/Partials/Layout';
 import { FormEventHandler } from 'react';
 import { Button } from '@/components/ui/button';
 import Step from '../Partials/Step';
-import Detail from './Partial/Detail';
-import PaymentForm from './Partial/PaymentForm';
+import Detail from '@/Pages/Guest/Payment/Partials/Detail';
+import PaymentForm from '@/Pages/Guest/Payment/Partials/PaymentForm';
 import { Booking } from '@/types';
-import FlightDetail from '../Booking/Partial/FlightDetail';
+import FlightDetail from '../Partials/FlightDetail';
 
 export default function Index({ booking }: {booking: Booking}) {
     const { data, setData, post, errors, processing } = useForm({

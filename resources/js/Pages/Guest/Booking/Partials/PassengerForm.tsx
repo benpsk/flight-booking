@@ -26,7 +26,6 @@ interface FormProps {
     errors: any
 }
 export default function PassengerForm({ countries, data, setData, errors }: FormProps) {
-    console.log('passenger errors', errors);
     return (
         <section className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg col-span-2">
             <header>

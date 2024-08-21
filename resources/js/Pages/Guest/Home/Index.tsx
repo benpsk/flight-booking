@@ -1,9 +1,9 @@
 import { Head, useForm, usePage } from '@inertiajs/react';
 import Layout from '@/Pages/Guest/Partials/Layout';
-import Hero from './Partial/Hero';
-import SelectFlight from './Partial/SelectFlight';
+import Hero from '@/Pages/Guest/Home/Partials/Hero';
+import SelectFlight from '@/Pages/Guest/Home/Partials/SelectFlight';
 import { Button } from '@/components/ui/button';
-import Ticket from './Partial/Ticket';
+import Ticket from '@/Pages/Guest/Home/Partials/Ticket';
 import { FormEventHandler } from 'react';
 import { Airport, Ticket as TicketType } from '@/types';
 import InputError from '@/components/input-error';
@@ -16,13 +16,11 @@ interface DataType {
 }
 
 export default function Index({ airports, tickets, is_filter }: { airports: Airport[], tickets: TicketType[], is_filter: boolean }) {
-    console.log(typeof tickets);
     const { data, setData, post, processing, errors } = useForm<DataType>({
         origin_id: '',
         destination_id: '',
         date: '',
     })
-    console.log(data);
     const submit: FormEventHandler = (e) => {
         e.preventDefault()
         post(route('filter'), { preserveState: true, preserveScroll: true });

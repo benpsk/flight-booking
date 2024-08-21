@@ -2,8 +2,8 @@ import { Head, useForm } from '@inertiajs/react';
 import Layout from '@/Pages/Guest/Partials/Layout';
 import { FormEventHandler } from 'react';
 import Step from '../Partials/Step';
-import Detail from './Partial/Detail';
-import FlightDetail from '../Booking/Partial/FlightDetail';
+import Detail from '@/Pages/Guest/Confirm/Partials/Detail';
+import FlightDetail from '../Partials/FlightDetail';
 import { Ticket } from '@/types';
 
 export default function Index({ ticket }: {ticket: Ticket}) {

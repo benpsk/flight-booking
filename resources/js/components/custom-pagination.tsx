@@ -20,7 +20,6 @@ import { Label } from "@/components/ui/label";
 import { router } from "@inertiajs/react";
 
 export default function CustomPagination<T>({ pagination, query, perPages = [10, 20, 50], only = [] }: { pagination: PaginationType<T>, query: string, perPages?: number[], only?: string[] }) {
-    console.log(pagination);
     const handlePerPageUpdate = (perPage: string) => {
         router.get(pagination.path + "?perPage=" + perPage + query, {}, {
             preserveScroll: true,

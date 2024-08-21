@@ -1,11 +1,11 @@
 import { Head, useForm } from '@inertiajs/react';
 import Layout from '@/Pages/Guest/Partials/Layout';
 import { FormEventHandler } from 'react';
-import ContactForm from './Partial/ContactForm';
-import PassengerForm from './Partial/PassengerForm';
+import ContactForm from '@/Pages/Guest/Booking/Partials/ContactForm';
+import PassengerForm from '@/Pages/Guest/Booking/Partials/PassengerForm';
 import { Button } from '@/components/ui/button';
 import Step from '../Partials/Step';
-import FlightDetail from './Partial/FlightDetail';
+import FlightDetail from '../Partials/FlightDetail';
 import { Country, Ticket } from '@/types';
 
 export default function Index({ ticket, countries }: { ticket: Ticket, countries: Country[] }) {
@@ -31,8 +31,6 @@ export default function Index({ ticket, countries }: { ticket: Ticket, countries
             country_id: data.passenger_country_id
         }
     }))
-    console.log(data);
-    console.log(errors);
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         post(route('bookings.store'));

@@ -5,7 +5,6 @@ import { PageProps } from "@/types";
 export default function Nav({ classNames = "flex text-sm items-center gap-6" }: { classNames?: string }) {
     const { url } = usePage();
     const { auth } = usePage<PageProps>().props;
-    console.log(auth);
     return (
         <ul className={classNames}>
             <li>
