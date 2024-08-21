@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class BookingController extends Controller
+class PaymentController extends Controller
 {
     public function __invoke()
     {

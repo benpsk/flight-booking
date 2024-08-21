@@ -4,8 +4,7 @@ import { Link } from '@inertiajs/react';
 
 export default function Ticket() {
     return (
-        <Link href={route('booking')} className="w-full md:w-5/6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-between p-4 sm:p-8 bg-white gap-4 shadow sm:rounded-lg transform transition-transform duration-300 hover:scale-105">
-
+        <Link href={route('booking')} className="grid grid-cols-1 sm:grid-cols-3 justify-between p-4 sm:p-8 bg-white gap-4 shadow sm:rounded-lg transform transition-transform duration-300 hover:scale-105">
             <div className='flex items-center gap-2 '>
                 <Avatar>
                     <AvatarImage src="https://github.com/shadcn.png" />
