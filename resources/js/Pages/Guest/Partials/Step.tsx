@@ -1,11 +1,22 @@
-export default function Step() {
+import { cn } from "@/lib/utils";
+
+export default function Step({ level }: { level: string }) {
+
     return (
+
         <div className="w-full md:w-5/6 mx-auto my-3 sm:my-6">
             <h2 className="sr-only">Steps</h2>
             <div className="after:mt-4 after:block after:h-1 after:w-full after:rounded-lg after:bg-gray-200">
                 <ol className="grid grid-cols-3 text-sm font-medium text-gray-500">
-                    <li className="relative flex justify-start text-blue-600">
-                        <span className="absolute -bottom-[1.75rem] start-0 rounded-full bg-blue-600 text-white">
+                    <li className={cn(
+                        "relative flex justify-start",
+                        level == 'booking' && "text-blue-600"
+                    )}>
+                        <span className={cn(
+                            "absolute -bottom-[1.75rem] start-0 rounded-full bg-gray-600 text-white",
+                            level == 'booking' && 'bg-blue-600'
+                        )}
+                        >
                             <svg
                                 className="size-5"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -38,9 +49,15 @@ export default function Step() {
                         </svg>
                     </li>
 
-                    <li className="relative flex justify-center text-blue-600">
+                    <li className={cn(
+                        "relative flex justify-center",
+                        level == 'payment' && "text-blue-600"
+                    )}>
                         <span
-                            className="absolute -bottom-[1.75rem] left-1/2 -translate-x-1/2 rounded-full bg-blue-600 text-white"
+                            className={cn(
+                                "absolute -bottom-[1.75rem] left-1/2 -translate-x-1/2 rounded-full bg-gray-600 text-white",
+                                level == 'payment' && 'bg-blue-600'
+                            )}
                         >
                             <svg
                                 className="size-5"
@@ -79,8 +96,15 @@ export default function Step() {
                         </svg>
                     </li>
 
-                    <li className="relative flex justify-end">
-                        <span className="absolute -bottom-[1.75rem] end-0 rounded-full bg-gray-600 text-white">
+                    <li className={cn(
+                        "relative flex justify-end",
+                        level == 'confirm' && "text-blue-600"
+                    )}>
+                        <span className={cn(
+                            "absolute -bottom-[1.75rem] end-0 rounded-full bg-gray-600 text-white",
+                            level == 'confirm' && 'bg-blue-600'
+                        )}
+                        >
                             <svg
                                 className="size-5"
                                 xmlns="http://www.w3.org/2000/svg"

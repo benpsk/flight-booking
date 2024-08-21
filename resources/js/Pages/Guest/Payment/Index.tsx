@@ -5,33 +5,35 @@ import { Button } from '@/components/ui/button';
 import Step from '../Partials/Step';
 import Detail from './Partial/Detail';
 import PaymentForm from './Partial/PaymentForm';
+import { Booking } from '@/types';
+import FlightDetail from '../Booking/Partial/FlightDetail';
 
-export default function Index() {
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        first_name: '',
-        last_name: '',
-        phone_no: '',
-        email: '',
-        passenger: {
-            gender: '',
-            first_name: '',
-            last_name: '',
-            dob: '',
-            nationality: '',
-        }
+export default function Index({ booking }: {booking: Booking}) {
+    const { data, setData, post, errors, processing } = useForm({
+        booking_id: booking.id,
+        card_holder_name: '',
+        card_no: '',
+        expiry_date: '',
+        cvc: '',
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        patch(route('profile.update'));
+        post(route('payments.store'), { preserveScroll: true});
     };
     return (
         <Layout>
             <Head title="Payment" />
             <form onSubmit={submit} className='flex flex-col gap-3 sm:gap-6'>
-                <Step />
-                <Detail />
-                <PaymentForm data={data} setData={setData} errors={errors} />
+                <Step level='payment' />
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6'>
+                    <Detail booking={booking} />
+                    <FlightDetail ticket={booking.ticket} />
+                </div>
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6'>
+                    <PaymentForm data={data} setData={setData} errors={errors} />
+                    <div></div>
+                </div>
                 <div className="">
                     <Button disabled={processing}>Pay Now</Button>
                 </div>

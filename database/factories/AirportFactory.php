@@ -18,7 +18,7 @@ class AirportFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->citySuffix,
+            'name' => fake()->citySuffix . " Airport",
             'city_id' => City::factory()
         ];
     }

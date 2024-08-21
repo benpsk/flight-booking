@@ -1,12 +1,12 @@
 import { Head, useForm } from '@inertiajs/react';
 import Layout from '@/Pages/Guest/Partials/Layout';
 import { FormEventHandler } from 'react';
-import { Button } from '@/components/ui/button';
 import Step from '../Partials/Step';
 import Detail from './Partial/Detail';
-import PaymentForm from './Partial/PaymentForm';
+import FlightDetail from '../Booking/Partial/FlightDetail';
+import { Ticket } from '@/types';
 
-export default function Index() {
+export default function Index({ ticket }: {ticket: Ticket}) {
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         first_name: '',
         last_name: '',
@@ -29,8 +29,12 @@ export default function Index() {
         <Layout>
             <Head title="Payment" />
             <form onSubmit={submit} className='flex flex-col gap-3 sm:gap-6'>
-                <Step />
-                <Detail />
+                <Step level='confirm' />
+
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6'>
+                    <Detail />
+                    <FlightDetail ticket={ticket} />
+                </div>
             </form>
         </Layout>
     );

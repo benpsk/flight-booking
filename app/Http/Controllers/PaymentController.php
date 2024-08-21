@@ -2,13 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreVisaPayment;
+use App\Models\Booking;
+use App\Models\Ticket;
+use App\Services\PaymentService;
 use Inertia\Inertia;
 
 class PaymentController extends Controller
 {
-    public function __invoke()
+    public function show(Booking $payment)
     {
-        return Inertia::render('Guest/Payment/Index');
+        $booking = $payment->load('ticket.origin.city', 'ticket.destination.city', 'ticket.flight.airline', 'passengers');
+        return Inertia::render('Guest/Payment/Index', [
+            'booking' => $booking
+        ]);
+    }
+
+    public function store(StoreVisaPayment $request, PaymentService $service)
+    {
+        $input = $request->validated();
+        $payment = $service->store($input);
+        $ticket = $payment->booking->ticket;
+        return to_route('confirm', $ticket->id);
     }
 }

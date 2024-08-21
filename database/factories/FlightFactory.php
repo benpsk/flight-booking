@@ -18,8 +18,8 @@ class FlightFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->streetSuffix,
-            'number'=> fake()->randomLetter,
+            'name' => fake()->streetSuffix . " Flight",
+            'number'=> fake()->buildingNumber,
             'airline_id' => Airline::factory()
 
         ];

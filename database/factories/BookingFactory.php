@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,9 @@ class BookingFactory extends Factory
     {
         return [
             'ticket_id' => Ticket::factory(),
-            'name' => fake()->name,
+            'user_id' => User::factory(),
+            'first_name' => fake()->firstName,
+            'last_name' => fake()->lastName,
             'email' => fake()->email,
             'phone_no' => fake()->phoneNumber,
         ];

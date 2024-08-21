@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\Gender;
 use App\Models\Booking;
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,8 +22,11 @@ class PassengerFactory extends Factory
     // protected $fillable = ['booking_id', 'name', 'passport'];
         return [
             'booking_id' => Booking::factory(),
-            'name' => fake()->name,
-            'passport' => fake()->randomLetter
+            'first_name' => fake()->firstName,
+            'last_name' => fake()->lastName,
+            'dob' => fake()->date('-18 year'),
+            'country_id' => Country::factory(),
+            'gender' => fake()->randomElement(Gender::all()),
         ];
     }
 }

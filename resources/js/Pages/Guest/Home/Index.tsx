@@ -1,64 +1,84 @@
-import { Head } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import Layout from '@/Pages/Guest/Partials/Layout';
 import Hero from './Partial/Hero';
-import { Input } from '@/components/ui/input';
 import SelectFlight from './Partial/SelectFlight';
 import { Button } from '@/components/ui/button';
-import Date from './Partial/Date';
 import Ticket from './Partial/Ticket';
-import { Calendar as CalendarIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Calendar } from "@/components/ui/calendar"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-import { useState } from 'react';
+import { FormEventHandler } from 'react';
+import { Airport, Ticket as TicketType } from '@/types';
+import InputError from '@/components/input-error';
+import { Input } from '@/components/ui/input';
 
-export default function Index() {
-    const [date, setDate] = useState<Date>()
+interface DataType {
+    origin_id: string,
+    destination_id: string,
+    date: string
+}
+
+export default function Index({ airports, tickets, is_filter }: { airports: Airport[], tickets: TicketType[], is_filter: boolean }) {
+    console.log(typeof tickets);
+    const { data, setData, post, processing, errors } = useForm<DataType>({
+        origin_id: '',
+        destination_id: '',
+        date: '',
+    })
+    console.log(data);
+    const submit: FormEventHandler = (e) => {
+        e.preventDefault()
+        post(route('filter'), { preserveState: true, preserveScroll: true });
+    }
+    const origins = airports.filter(airport => airport.id != data.destination_id);
+    const destinations = airports.filter(airport => airport.id != data.origin_id);
     return (
         <Layout>
             <Head title="Home" />
             <Hero />
             <div className="flex flex-col items-center justify-center gap-4">
-                <div className="w-full md:w-5/6 p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <form onSubmit={submit} className="w-full md:w-5/6 p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <div className="grid grid-cols-1 space-y-2 md:space-y-0 md:grid-cols-3 sm:gap-4">
-                        <SelectFlight />
-                        <SelectFlight />
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    variant={"outline"}
-                                    className={cn(
-                                        "w-[280px] h-12 justify-start text-left font-normal",
-                                        !date && "text-muted-foreground"
-                                    )}
-                                >
-                                    <CalendarIcon className="mr-2 h-4 w-4" />
-                                    {date ? date.toString() : <span>Pick a date</span>}
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0">
-                                <Calendar
-                                    mode="single"
-                                    selected={date}
-                                    onSelect={setDate}
-                                    initialFocus
-                                />
-                            </PopoverContent>
-                        </Popover>
+                        <div>
+                            <SelectFlight
+                                value={data.origin_id}
+                                dataKey="origin_id"
+                                setData={setData}
+                                airports={origins} label="Flying from" />
+                            <InputError message={errors.origin_id} />
+                        </div>
+                        <div>
+                            <SelectFlight
+                                value={data.destination_id}
+                                dataKey="destination_id"
+                                setData={setData}
+                                airports={destinations} label="Flying to"
+                            />
+                            <InputError message={errors.destination_id} />
+                        </div>
+                        <div>
+                            <Input
+                                id="date"
+                                type='date'
+                                className="block w-full h-12"
+                                value={data.date}
+                                onChange={(e) => setData('date', e.target.value)}
+                            />
+                            <InputError message={errors.date} />
+                        </div>
                     </div>
                     <div className="flex justify-center mt-8">
-                        <Button className="h-12 w-1/2" >Search</Button>
+                        <Button className="h-12 w-1/2" disabled={processing} >Search</Button>
                     </div>
-                </div>
+                </form>
                 <div className="w-full md:w-5/6 space-y-4 my-6">
-                    <Ticket />
-                    <Ticket />
-                    <Ticket />
-                    <Ticket />
+                    {
+                        (is_filter && tickets.length == 0) && (
+                            <div className='flex justify-center'>No fight available!</div>
+                        )
+                    }
+                    {
+                        tickets.map(ticket => (
+                            <Ticket key={ticket.id} ticket={ticket} />
+                        ))
+                    }
                 </div>
             </div>
         </Layout>

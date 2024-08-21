@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Ticket;
 use Inertia\Inertia;
 
 class ConfirmController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Ticket $ticket)
     {
-        return Inertia::render('Guest/Confirm/Index');
+        $ticket->load('origin.city', 'destination.city', 'flight.airline');
+        return Inertia::render('Guest/Confirm/Index', [
+            'ticket' => $ticket
+        ]);
     }
 }

@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Airport extends Model
+class Payment extends Model
 {
     use HasFactory, HasUuids;
-    protected $fillable = ['name', 'city_id'];
+    protected $fillable = ['booking_id', 'card_holder_name', 'card_no', 'expiry_date', 'cvc', 'status'];
 
-    public function city(): BelongsTo
+    public function booking(): BelongsTo
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(Booking::class);
     }
 }
