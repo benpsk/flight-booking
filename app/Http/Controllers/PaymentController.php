@@ -21,6 +21,8 @@ class PaymentController extends Controller
     public function store(StoreVisaPayment $request, PaymentService $service)
     {
         $input = $request->validated();
+        /// only store the payment info [with separate table] when the user is log in
+        // else dont save [holder name, card no, ...]
         $payment = $service->store($input);
         $ticket = $payment->booking->ticket;
         return to_route('confirm', $ticket->id);

@@ -75,6 +75,7 @@ export default function PaymentForm({ data, errors, setData }: FormProps) {
                                     <Input
                                         id="expiry_date"
                                         className="mt-1 block w-full"
+                                        placeholder='MM/YY'
                                         value={data.expiry_date}
                                         onChange={(e) => setData('expiry_date', e.target.value)}
                                         autoComplete="expiry_date"

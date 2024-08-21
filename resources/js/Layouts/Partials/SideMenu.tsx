@@ -11,9 +11,12 @@ interface Menu {
 
 const menu: Menu = {
     admin: [
+        { href: route('admin.dashboard'), active: '/admin/dashboard', label: 'Dashboard', isNested: false },
+        { href: route('admin.booking'), active: '/admin/booking', label: 'Bookings', isNested: false },
     ],
     user: [
         { href: route('dashboard'), active: '/dashboard', label: 'Dashboard', isNested: false },
+        { href: route('booking'), active: '/booking', label: 'My Booking', isNested: false },
     ]
 };
 

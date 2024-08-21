@@ -51,6 +51,7 @@ export interface Booking {
     phone_no: string,
     ticket: Ticket,
     passengers: Passenger[],
+    status: string
 }
 export interface Passenger {
     id: string,
@@ -84,6 +85,21 @@ export interface MenuItem {
     isNested: boolean;
     ul?: MenuItem[];
     open?: string[];
+}
+export interface Pagination<T> {
+    current_page: number,
+    data: T[],
+    first_page_url: string,
+    from: number,
+    last_page: number,
+    last_page_url: string,
+    links: [],
+    next_page_url: string,
+    prev_page_url: string,
+    path: string,
+    per_page: number,
+    to: number,
+    total: number
 }
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {

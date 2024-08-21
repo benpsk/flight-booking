@@ -5,6 +5,7 @@ import { PageProps } from "@/types";
 export default function Nav({ classNames = "flex text-sm items-center gap-6" }: { classNames?: string }) {
     const { url } = usePage();
     const { auth } = usePage<PageProps>().props;
+    console.log(auth);
     return (
         <ul className={classNames}>
             <li>
@@ -13,7 +14,7 @@ export default function Nav({ classNames = "flex text-sm items-center gap-6" }: 
             {
                 auth.user ?
                     <li>
-                        <Link href={route('dashboard')} >
+                        <Link href={auth.guard == 'admin' ? route('admin.dashboard') : route('dashboard')} >
                             <Button size="sm" className={'bg-teal-600 text-white hover:bg-teal-700'} >Dashboard</Button>
                         </Link>
                     </li>
