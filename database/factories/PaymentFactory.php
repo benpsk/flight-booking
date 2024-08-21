@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Booking;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'booking_id' => Booking::factory(),
+            'card_holder_name' => fake()->name,
+            'card_no' => fake()->creditCardNumber,
+            'expiry_date' => fake()->creditCardExpirationDateString,
+            'cvc' => fake()->domainName
         ];
     }
 }

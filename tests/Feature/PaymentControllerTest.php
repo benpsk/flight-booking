@@ -94,6 +94,13 @@ class PaymentControllerTest extends TestCase
         $response = $this->post(route('payments.store'), $data);
         $response->assertSessionHasNoErrors()
             ->assertRedirect();
-        $this->assertDatabaseHas('payments', $data);
+        $encrypt_data = [
+            'booking_id' => $booking->id,
+            'card_holder_name' => encryption('jeff clay'),
+            'card_no' => encryption('292838373'),
+            'cvc' => encryption('2033'),
+            'expiry_date' => encryption('01/27'),
+        ];
+        $this->assertDatabaseHas('payments', $encrypt_data);
     }
 }
