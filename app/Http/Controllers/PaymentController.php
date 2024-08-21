@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreVisaPayment;
 use App\Models\Booking;
-use App\Models\Ticket;
 use App\Services\PaymentService;
 use Inertia\Inertia;
 

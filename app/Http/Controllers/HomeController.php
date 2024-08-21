@@ -6,7 +6,6 @@ use App\Http\Requests\FilterTicket;
 use App\Services\AirportService;
 use App\Services\TicketService;
 use Inertia\Inertia;
-use Mockery\Undefined;
 
 class HomeController extends Controller
 {
