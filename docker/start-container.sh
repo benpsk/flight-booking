@@ -6,7 +6,8 @@ echo "App running on $APPENV environment."
 
 if [ $APPENV == "production" ]; then
     echo "Running production tasks."
-    php /usr/bin/composer install --optimize-autoloader --no-dev
+    php /usr/bin/composer install
+    php artisan optimize:clear
 
     echo "Running assets."
     npm install
@@ -15,6 +16,7 @@ if [ $APPENV == "production" ]; then
 else
     echo "Running tasks."
     php /usr/bin/composer install
+    php artisan optimize:clear
 
     echo "Running assets."
     npm install
