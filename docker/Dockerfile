@@ -8,13 +8,13 @@ WORKDIR /var/www/html
 
 # Install system dependencies # Install PHP extensions
 RUN apt-get update && apt-get install -y \
-    git curl zip unzip libpq-dev \
+    git curl zip unzip libpq-dev libicu-dev \
     libfreetype-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd pgsql pdo_pgsql pdo
+    && docker-php-ext-install -j$(nproc) gd pgsql pdo_pgsql pdo intl
 
 
 # Install Node.js lts version and NPM, supervisor and cron

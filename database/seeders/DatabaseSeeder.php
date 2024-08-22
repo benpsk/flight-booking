@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         Admin::factory()->create([
             'name' => 'Super Admin',
             'email' => 'admin@flight.com',
-            'password' => 'secret'
+            'password' => 'password'
         ]);
         Airport::factory(5)->create();
         $this->call([

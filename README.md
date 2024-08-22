@@ -8,7 +8,7 @@
 </p>
 
 
-**Development Setup Guide**
+**Setup Guide**
 
 **1. copy dev env file (no need to update anything)**
 ```shell
@@ -32,8 +32,18 @@ php artisan migrate --seed
 ```
 **6. run tests**
 ```shell
-npm run test
+php artisan test
 ```
 **7. access the app**
 - http://localhost:8001
 
+**Admin Credential**
+Please use the below credential for super admin.
+url - http://localhost:8001/admin/login 
+username - admin@flight.com
+password - password
+
+---
+
+**Tech Stack**
+I'm using PHP (Laravel) and React with Postgres because they let me build a SPA efficiently without separating frontend and backend. For larger user bases (e.g., 5+ requests per second), I would consider Node.js or Golang for better scalability.
