@@ -8,7 +8,7 @@
 </p>
 
 
-**Setup Guide**
+**Setup Guide with Docker**
 
 **1. copy dev env file (no need to update anything)**
 ```shell
@@ -39,11 +39,11 @@ php artisan test
 
 **Admin Credential**
 Please use the below credential for super admin.
-url - http://localhost:8001/admin/login 
-username - admin@flight.com
-password - password
+- url - http://localhost:8001/admin/login 
+- username - admin@flight.com
+- password - password
 
 ---
 
 **Tech Stack**
-I'm using PHP (Laravel) and React with Postgres because they let me build a SPA efficiently without separating frontend and backend. For larger user bases (e.g., 5+ requests per second), I would consider Node.js or Golang for better scalability.
+I'm using PHP (Laravel), Inertia and React with Postgres because they let me build a SPA efficiently without separating frontend and backend. For larger user bases (e.g., 7+ requests per second), I would consider Node.js or Golang for better scalability.
